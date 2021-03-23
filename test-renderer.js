@@ -1,1 +1,1 @@
-module.exports = require('./src/test-renderer');
+module.exports = require('./lib/test-renderer');
