@@ -6,13 +6,13 @@ import AssertionGenerator from './AssertionGenerator';
 
 
 function installInto(expect) {
-  
+
   function triggerEvent(renderer, target, eventName, eventArgs) {
-    
+
     if (!target) {
       target = renderer.toJSON();
     }
-    
+
     const handlerPropName = 'on' + eventName[0].toUpperCase() + eventName.substr(1);
     const handler = target.props[handlerPropName];
     if (typeof handler !== 'function') {
@@ -25,7 +25,7 @@ function installInto(expect) {
     act(() => handler(eventArgs));
     return renderer;
   }
-  
+
   const assertionGenerator = new AssertionGenerator({
     ActualAdapter: TestRendererAdapter,
     QueryAdapter: ReactElementAdapter,
@@ -40,7 +40,7 @@ function installInto(expect) {
     triggerEvent: triggerEvent
   });
   assertionGenerator.installInto(expect);
-  
+
   return assertionGenerator;
 }
 
